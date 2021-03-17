@@ -1,0 +1,141 @@
+{% load static %}
+<!doctype html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <meta name="theme-color" content="#7952b3">
+
+        <style>
+            main > .container {
+                margin-top: 75px;
+            }
+
+            #calendar-wrapper {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+            }
+
+            .week-row {
+                display: flex;
+                border-left: 1px solid black;
+            }
+
+            .day {
+                border-bottom: 1px solid black;
+                border-right: 1px solid black;
+                width: 100px;
+                height: 100px;
+            }
+
+            .non-month-day {
+                background-color: #CCC;
+            }
+
+            .today {
+                background-color: green;
+            }
+
+            .day-label {
+                padding-left: 0.5em;
+            }
+
+            #calendar-header {
+                display: flex;
+                margin-bottom: 1em;
+            }
+
+            #calendar-header h3 {
+                flex-grow: 4;
+            }
+
+            .first-week {
+                border-top: 1px solid black;
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column h-100">
+
+        <header>
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Fixed navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Begin page content -->
+        <main class="flex-shrink-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                jsCalendar Demo
+                            </div>
+                            <div class="card-body">
+                                <div id="calendar"></div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm">Add Event (not working)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container">
+                <span class="text-muted">Place sticky footer content here.</span>
+            </div>
+        </footer>
+
+        <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="jsCalendar.js"></script>
+        <script>
+            let calendar = null;
+            //let event_data = {name: "test_feed", "url": "/event_feed/"};
+            document.addEventListener("DOMContentLoaded", async () => {
+                calendar = new Calendar(document.getElementById("calendar"), {
+                    event_click: (event) => { 
+                        console.log("Event Click!");
+                        console.log("Event ID: ", event.target.dataset.eventId);
+                    }
+                });
+
+                //need to setup something different to use without
+                //having a django backend
+                //await calendar.add_event_feed(event_data);
+            });
+        </script>
+    </body>
+</html>
+
