@@ -33,4 +33,21 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 ```
 Note that the event fetching system is async so be sure to use await when adding the event feeds.
 
+
+## Event Clicking
+To be able to do stuff when clicking on an event, you need to add a function to the options object we give to the calendar:
+```javascript
+let calendar;
+document.addEventListener("DOMContentLoaded", (event) => {
+	calendar = new Calendar(document.getElementById("calendar"), {
+		event_click: (event) => {
+			// event is a standard javascript event
+			console.log(event.target);
+		}
+	});
+});
+```
+
+TODO: Add info about adding data attributes to events so we can retrieve them on clicking
+
 More to come!
