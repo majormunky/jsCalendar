@@ -80,10 +80,15 @@ class Calendar {
                 let event = this.events[event_source_name][i];
                 let output = `<div class='event' data-event-id='${event.id}'>${event.name}</div>`;
                 let day_cell = document.querySelector(`[data-date-str='${event.date}']`);
-                day_cell.querySelector(".event-wrapper").innerHTML = output;
+                day_cell.querySelector(".event-wrapper").appendChild(output);
             }
         }
     }
+	
+	load_events(name, event_list) {
+		this.events[name] = event_list;
+		render_events();
+	}
 
     build() {
         let rows = [];
