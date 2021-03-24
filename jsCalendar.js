@@ -300,7 +300,9 @@ class Calendar {
     }
 
     load_temp_event(new_event) {
-        add_event_to_day_cell(new_event);
+        let output = `<div class='event' data-event-id='${new_event.id}'>${new_event.name}</div>`;
+        let day_cell = document.querySelector(`[data-date-str='${new_event.date_str}']`);
+        day_cell.querySelector(".event-wrapper").innerHTML += output;
     }
 
     render() {
