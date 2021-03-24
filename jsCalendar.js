@@ -233,6 +233,11 @@ class Calendar {
                 return;
             }
 
+            if (event.target.matches("#today-button")) {
+                await this.this_month();
+                return;
+            }
+
             if (event.target.matches(".event")) {
                 let event_clicked_event = new CustomEvent("EventClickedEvent", {detail: {event_id: event.target.dataset.eventId}});
                 document.dispatchEvent(event_clicked_event);
@@ -274,6 +279,12 @@ class Calendar {
         await this.render_events();
     }
 
+    async this_month() {
+        this.current_dt = new Date();
+        this.setup();
+        await this.render_events();
+    }
+
     build_header() {
         const month = this.current_dt.toLocaleString('default', { month: 'long' });
     
@@ -281,6 +292,7 @@ class Calendar {
         output += `<h3 class='align-middle'>${month} - ${this.current_dt.getFullYear()}</h3>`;
         output += "<div class='btn-group float-end' role='group'>";
         output += "<button class='btn btn-outline-primary' id='prev-month'>Prev</button>";
+        output += "<button class='btn btn-outline-primary' id='today-button'>Today</button>";
         output += "<button class='btn btn-outline-primary' id='next-month'>Next</button>";
         output += "</div>";
         output += "</div>";
