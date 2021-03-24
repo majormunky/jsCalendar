@@ -291,9 +291,9 @@ class Calendar {
         let output = "<div id='calendar-header'>";
         output += `<h3 class='align-middle'>${month} - ${this.current_dt.getFullYear()}</h3>`;
         output += "<div class='btn-group float-end' role='group'>";
-        output += "<button class='btn btn-outline-primary' id='prev-month'>Prev</button>";
-        output += "<button class='btn btn-outline-primary' id='today-button'>Today</button>";
-        output += "<button class='btn btn-outline-primary' id='next-month'>Next</button>";
+        output += "<button class='btn btn-outline-primary btn-sm' id='prev-month'>Prev</button>";
+        output += "<button class='btn btn-outline-primary btn-sm' id='today-button'>Today</button>";
+        output += "<button class='btn btn-outline-primary btn-sm' id='next-month'>Next</button>";
         output += "</div>";
         output += "</div>";
         return output;
