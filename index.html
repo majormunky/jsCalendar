@@ -169,13 +169,15 @@
         <script src="jsCalendar.js"></script>
         <script>
             let calendar = null;
+            let event_modal = new bootstrap.Modal(document.getElementById("event-details-modal"));
             //let event_data = {name: "test_feed", "url": "/event_feed/"};
             document.addEventListener("DOMContentLoaded", async () => {
                 calendar = new Calendar(document.getElementById("calendar"), {
                     event_click: (event) => { 
                         console.log("Event Click!");
                         console.log("Event ID: ", event.target.dataset.eventId);
-                    }
+                        event_modal.show();
+                    },
                 });
 
                 //need to setup something different to use without
