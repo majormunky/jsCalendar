@@ -73,9 +73,17 @@ class Calendar {
 
     render_events() {
         for (var event_source_name in this.events) {
-            for (var i = 0; i < this.events[event_source_name].length; i++) {
+            let event_count = Math.max(this.events[event_source_name].length, 2);
+            let remaining_events = this.events[event_source_name].length - event_count;
+
+            for (var i = 0; i < event_count; i++) {
                 let event = this.events[event_source_name][i];
                 this.add_event_to_day_cell(event);
+            }
+
+            if (remaining_events > 0) {
+                let day_cell = document.querySelector(`[data-date-str='${this.events[event_source_name][0].date_str}']`);
+                day_cell.querySelector(".event-wrapper").innerHTML += "<p>+" + remaining_events + " events</p>";
             }
         }
     }
