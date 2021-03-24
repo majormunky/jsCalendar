@@ -156,7 +156,10 @@ class Calendar {
                     today: false,
                     date_str: `${this.current_dt.getFullYear()}-${month_num}-${day_num}`,
                 };
-                if ((this.today.getDate() == current_day) && (this.today.getMonth() == this.current_dt.getMonth())) {
+                if (
+					(this.today.getDate() == current_day) && 
+					(this.today.getMonth() == this.current_dt.getMonth()) && 
+					(this.today.getFullYear() == this.current_dt.getFullYear())) {
                     day_obj.today = true;
                 }
 
