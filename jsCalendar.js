@@ -40,9 +40,6 @@ class Calendar {
         this.events = {};
         this.first_date = null;
         this.last_date = null;
-        this.handlers = {
-            event_click: options.event_click || null,
-        }
         this.setup_handlers();
         this.setup();
     }
@@ -78,11 +75,15 @@ class Calendar {
         for (var event_source_name in this.events) {
             for (var i = 0; i < this.events[event_source_name].length; i++) {
                 let event = this.events[event_source_name][i];
-                let output = `<div class='event' data-event-id='${event.id}'>${event.name}</div>`;
-                let day_cell = document.querySelector(`[data-date-str='${event.date_str}']`);
-                day_cell.querySelector(".event-wrapper").innerHTML += output;
+                this.add_event_to_day_cell(event);
             }
         }
+    }
+
+    add_event_to_day_cell(event) {
+        let output = `<div class='event' data-event-id='${event.id}'>${event.name}</div>`;
+        let day_cell = document.querySelector(`[data-date-str='${event.date_str}']`);
+        day_cell.querySelector(".event-wrapper").innerHTML += output;
     }
 	
 	load_events(name, event_list) {
@@ -232,11 +233,16 @@ class Calendar {
                 return;
             }
 
-            if (this.handlers.event_click) {
-                if (event.target.matches(".event")) {
-                    this.handlers.event_click(event);
-                }
+            if (event.target.matches(".event")) {
+                let event_clicked_event = new CustomEvent("EventClickedEvent", {detail: {event_id: event.target.dataset.eventId}});
+                document.dispatchEvent(event_clicked_event);
             }
+            
+            if (event.target.matches(".day")) {
+                let day_clicked_event = new CustomEvent("DayClickedEvent", {detail: {date_str: event.target.dataset.dateStr}})
+                document.dispatchEvent(day_clicked_event);
+            }
+            
         }, false);
     }
 
@@ -279,6 +285,10 @@ class Calendar {
         output += "</div>";
         output += "</div>";
         return output;
+    }
+
+    load_temp_event(new_event) {
+        add_event_to_day_cell(new_event);
     }
 
     render() {

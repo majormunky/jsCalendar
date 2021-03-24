@@ -172,13 +172,7 @@
             let event_modal = new bootstrap.Modal(document.getElementById("event-details-modal"));
             //let event_data = {name: "test_feed", "url": "/event_feed/"};
             document.addEventListener("DOMContentLoaded", async () => {
-                calendar = new Calendar(document.getElementById("calendar"), {
-                    event_click: (event) => { 
-                        console.log("Event Click!");
-                        console.log("Event ID: ", event.target.dataset.eventId);
-                        event_modal.show();
-                    },
-                });
+                calendar = new Calendar(document.getElementById("calendar"));
 
                 //need to setup something different to use without
                 //having a django backend
@@ -191,6 +185,17 @@
 				
 				calendar.load_events("Main", events);
             });
+
+            document.addEventListener("DayClickedEvent", (event) => {
+                console.log("Day Clicked!")
+                console.log(event.detail.date_str);
+            });
+
+            document.addEventListener("EventClickedEvent", (event) => {
+                console.log("Event Click!");
+                console.log("Event ID: ", event.detail.event_id);
+                event_modal.show();
+            })
         </script>
     </body>
 </html>
