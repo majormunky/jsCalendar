@@ -117,6 +117,9 @@
                             <div class="card-body">
                                 <div id="calendar"></div>
                             </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#add-event-modal">New Event</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,11 +167,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    
+                        <div class="mb-3">
+                            <label class="form-label">Name:</label>
+                            <input type="text" id="new-event-name" class="form-control" />
+                        </div>
+                        <div>
+                            <label class="form-label">Date:</label>
+                            <input type="date" id="new-event-date" class="form-control" />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" id="add-event-modal-save">Save</button>
                     </div>
                 </div>
             </div>
@@ -207,6 +217,12 @@
 
             document.addEventListener("hidden.bs.modal", (event) => {
                 document.getElementById("event-detail-name-modal").innerHTML = "";                
+            });
+
+            document.getElementById("add-event-modal-save").addEventListener("click", (event) => {
+                let event_name = document.getElementById("new-event-name").value;
+                let event_date = document.getElementById("new-event-date").value;
+                console.log(event_name, event_date)
             })
         </script>
     </body>
