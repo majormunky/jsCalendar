@@ -249,12 +249,23 @@ class Calendar {
             }
 
             if (event.target.matches(".event")) {
-                let event_clicked_event = new CustomEvent("EventClickedEvent", {detail: {event_id: event.target.dataset.eventId}});
+                let event_clicked_event = new CustomEvent(
+                    "EventClickedEvent",
+                    {
+                        detail: {
+                            event_id: event.target.dataset.eventId,
+                            name: event.target.innerHTML,
+                        }
+                    }
+                );
                 document.dispatchEvent(event_clicked_event);
             }
             
             if (event.target.matches(".day")) {
-                let day_clicked_event = new CustomEvent("DayClickedEvent", {detail: {date_str: event.target.dataset.dateStr}})
+                let day_clicked_event = new CustomEvent(
+                    "DayClickedEvent",
+                    {detail: {date_str: event.target.dataset.dateStr}}
+                )
                 document.dispatchEvent(day_clicked_event);
             }
             
