@@ -91,7 +91,9 @@ class Calendar {
     add_event_to_day_cell(event) {
         let output = `<div class='event' data-event-id='${event.id}'>${event.name}</div>`;
         let day_cell = document.querySelector(`[data-date-str='${event.date_str}']`);
-        day_cell.querySelector(".event-wrapper").innerHTML += output;
+        if (day_cell) {
+            day_cell.querySelector(".event-wrapper").innerHTML += output;
+        }
     }
 	
 	load_events(name, event_list) {
