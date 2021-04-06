@@ -130,21 +130,30 @@
         </footer>
 
         <div class="modal fade" id="event-details-modal" tabindex="-1" aria-labelledby="event-details-modal-label" aria-hidden="true">
-              <div class="modal-dialog">
+            <div class="modal-dialog">
                 <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="event-details-modal-label">Modal title</h5>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="event-details-modal-label">Event Details</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                    
-                      </div>
-                      <div class="modal-footer">
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <td>Event Name:</td>
+                                <td id="event-detail-name-modal"></td>
+                            </tr>
+                            <tr>
+                                <td>Time:</td>
+                                <td id="event-detail-time-modal"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
+                    </div>
                 </div>
-              </div>
+            </div>
         </div>
 
         <div class="modal fade" id="add-event-modal" tabindex="-1" aria-labelledby="add-event-modal-label" aria-hidden="true">
