@@ -192,9 +192,12 @@
             });
 
             document.addEventListener("EventClickedEvent", (event) => {
-                console.log("Event Click!");
-                console.log("Event ID: ", event.detail.event_id);
+                document.getElementById("event-detail-name-modal").innerHTML = event.detail.name;
                 event_modal.show();
+            });
+
+            document.addEventListener("hidden.bs.modal", (event) => {
+                document.getElementById("event-detail-name-modal").innerHTML = "";                
             })
         </script>
     </body>
